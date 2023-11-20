@@ -1,6 +1,8 @@
 /**
  * Simple code developed with use of chatGPT 3.5
+ * 
  * Tilt board left or right and use A button to check how many times dot touched the edge on left or right side
+ * 
  * Initialize variables
  */
 // Function to handle dot movement based on tilt
@@ -10,6 +12,9 @@ input.onGesture(Gesture.TiltLeft, function () {
         x += -1
         basic.clearScreen()
         led.plot(x, 2)
+        if (x <= 0) {
+            music.play(music.tonePlayable(784, music.beat(BeatFraction.Quarter)), music.PlaybackMode.UntilDone)
+        }
     } else {
         // Increment counter when dot reaches the left edge
         counter += 1
@@ -21,6 +26,9 @@ input.onGesture(Gesture.TiltRight, function () {
         x += 1
         basic.clearScreen()
         led.plot(x, 2)
+        if (x >= 4) {
+            music.play(music.tonePlayable(784, music.beat(BeatFraction.Quarter)), music.PlaybackMode.UntilDone)
+        }
     } else {
         // Increment counter when dot reaches the right edge
         counter += 1
